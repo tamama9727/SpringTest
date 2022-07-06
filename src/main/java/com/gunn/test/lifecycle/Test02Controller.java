@@ -6,8 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.gunn.test.lifecycle.model.Board;
 
 @RestController
 @RequestMapping("/lesson01/test02")
@@ -49,7 +53,42 @@ public class Test02Controller {
 		return movieList;
 	}
 	
+	@RequestMapping("/2")
+	public List<Board> boardList() {
+		
+		List<Board> boardList = new ArrayList<>();
+		
+		Board content = new Board();
+		content.setTitle("안녕하세요 가입인사 드립니다.");
+		content.setUser("hagulu");
+		content.setContent("안녕하세요 가입했어요 앞으로 잘 부탁드립니다.");
+		boardList.add(content);
+		
+		content = new Board();
+		content.setTitle("안녕하세요 가입인사 드립니다.222");
+		content.setUser("hagulu222");
+		content.setContent("안녕하세요 가입했어요 앞으로 잘 부탁드립니다.222");
+		boardList.add(content);
 	
+		content = new Board();
+		content.setTitle("안녕하세요 가입인사 드립니다.333");
+		content.setUser("hagulu333");
+		content.setContent("안녕하세요 가입했어요 앞으로 잘 부탁드립니다.333");
+		boardList.add(content);
+		
+		return boardList;
+	}
+	@RequestMapping("/3")
+	public ResponseEntity<Board> entity() {
+		
+		Board content = new Board();
+		content.setTitle("안녕하세요 가입인사 드립니다.");
+		content.setUser("hagulu");
+		content.setContent("안녕하세요 가입했어요 앞으로 잘 부탁드립니다.");
+		
+		ResponseEntity<Board> entity = new ResponseEntity(content, HttpStatus.INTERNAL_SERVER_ERROR);
+		return entity;
+	}
 	
 
 }
