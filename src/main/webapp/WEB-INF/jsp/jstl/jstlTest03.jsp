@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>JSTL 연습문제2</title>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -15,9 +16,47 @@
 </head>
 <body>
 
-	<div>
-		<h1></h1>
-		<
+	<div class = "container">
+		<h1>맴버쉽</h1>
+		<table class = "table text-center">
+			<thead>
+				<tr>
+					<th>이름</th>
+					<th>전화번호</th>
+					<th>등급</th>
+					<th>포인트</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="member" items = "${memberList }" varStatus = "status">
+				<tr>
+					<td>${member.name }</td>
+					<td>${member.phoneNumber }</td>
+					<%-- 등급이 vip 면 빨간색 gold면 파란색 basic 검은색 --%>
+					<c:choose>
+						<c:when test="${member.grade == 'VIP' }">
+						<td class = "text-danger">${member.grade }</td>
+						</c:when>
+						<c:when test="${member.grade == 'GOLD' }">
+						<td class = "text-warning">${member.grade }</td>
+						</c:when>
+						<c:otherwise>
+						<td>${member.grade }</td>
+						</c:otherwise>
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${member.point >= 5000 }">
+						<td class = "text-primary">${member.point }</td>
+						</c:when>
+						<c:otherwise>
+						<td>${member.point }</td>
+						</c:otherwise>
+					</c:choose>
+				</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	
 	
 	</div>

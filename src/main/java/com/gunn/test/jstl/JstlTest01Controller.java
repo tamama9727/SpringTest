@@ -8,17 +8,19 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/jstl")
 public class JstlTest01Controller {
 
-	@GetMapping("/jstl/test01")
+	@GetMapping("/test01")
 	public String test01() {
 		
 		return "jstl/jstlTest01";
 	}
 	
-	@GetMapping("/jstl/test02")
+	@GetMapping("/test02")
 	public String test02(Model model) {
 		
 		List<String> musicRanking = new ArrayList<>();
@@ -28,11 +30,11 @@ public class JstlTest01Controller {
 		musicRanking.add("거짓말");
 		musicRanking.add("보고싶다");
 		
-		model.addAttribute("song",musicRanking);
+		model.addAttribute("musicRanking",musicRanking);
 		
 		return "jstl/jstlTest02";
 	}
-	
+	@GetMapping("/test03")
 	public String test03(Model model) {
 		
 		List<Map<String, Object>> membership = new ArrayList<>();
@@ -72,6 +74,33 @@ public class JstlTest01Controller {
 		member.put("point", 420);
 		membership.add(member);
 		
+		model.addAttribute("memberList" , membership);
+		
+		/*
+		 * for(Map<String, Object> item : membership) { item.get("name");
+		 * item.get("phoneNumber"); }
+		 */
+		
 		return "jstl/jstlTest03";
 	}
+	
+	@GetMapping("/test04")
+	public String test04(Model model) {
+		
+		List<Integer> candidates = new ArrayList<>();
+		candidates.add(263001);
+		candidates.add(173942); 
+		candidates.add(563057); 
+		
+		model.addAttribute("candidates", candidates);
+		
+		return "jstl/jstlTest04";
+	}
+	
+	@GetMapping("/test05")
+	public String test05(Model model) {
+		
+		return"jstl/jstlTest05";
+	}
+	
 }
