@@ -186,13 +186,13 @@ public class JstlTest01Controller {
 		
 		return"jstl/jstlTest06";
 	}
-	@GetMapping("/test07")
-	public String test07() {
-		
-		
-		
-		return"jstl/jstlTest07";
-	}
+//	@GetMapping("/test07")
+//	public String test07() {
+//		
+//		
+//		
+//		return"jstl/jstlTest07";
+//	}
 	
 	
 }

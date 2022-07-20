@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div class = "container">
-<!-- 		<nav class ="bg-warning">
+<!--   		<nav class ="bg-warning">
 			<div>기상청</div>
 			<a></a>
 			<a></a>
@@ -26,7 +26,7 @@
 		</nav> -->
 		<main>
 			<h2>과거 날씨</h2>
-			<table class = "table">
+			<table class = "table text-center">
 				<thead>
 					<tr>
 						<th>날짜</th>	
@@ -39,14 +39,31 @@
 				</thead>
 				
 				<tbody>
+					<c:forEach var = "weatherhistory" items = "${WeatherhistoryList }" >
 					<tr>
-						<td>2015년 6월 1일</td>
-						<td>좋음</td>
-						<td>21.9도</td>
-						<td>81.1mm</td>
-						<td>보통</td>
-						<td>2.9km/h</td>
+						<td><fmt:formatDate value="${weatherhistory.date }" pattern="yyyy년 M월 d일"/></td>
+						<td>
+							<c:choose>
+								<c:when test = "${weatherhistory.weather eq '맑음' }">
+									<img src = "http://marondal.com/material/images/dulumary/web/jstl/sunny.jpg">
+								</c:when>
+								<c:when test = "${weatherhistory.weather eq '구름조금' }">
+									<img src = "http://marondal.com/material/images/dulumary/web/jstl/partlyCloudy.jpg">
+								</c:when>
+								<c:when test = "${weatherhistory.weather eq '흐림' }">
+									<img src = "http://marondal.com/material/images/dulumary/web/jstl/cloudy.jpg">
+								</c:when>
+								<c:when test = "${weatherhistory.weather eq '비'  }">
+									<img src = "http://marondal.com/material/images/dulumary/web/jstl/rainy.jpg">
+								</c:when>
+							</c:choose>
+						</td>
+						<td>${weatherhistory.temperatures }</td>
+						<td>${weatherhistory.precipitation }</td>
+						<td>${weatherhistory.microDust }</td>
+						<td>${weatherhistory.windSpeed }km/h</td>
 					</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</main>

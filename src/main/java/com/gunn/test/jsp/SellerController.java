@@ -35,7 +35,7 @@ public class SellerController {
 	@GetMapping("/input")
 	public String sellerInput() {
 		
-		return "jsp/sellerInput";
+		return "sellerInput";
 	}
 	
 	@GetMapping("/info")
