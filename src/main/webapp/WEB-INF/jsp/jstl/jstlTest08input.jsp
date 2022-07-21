@@ -21,7 +21,7 @@
 	<div class = "container">
 		<h1>날씨 입력</h1>
 		<div>
-			<form method="post" action="/jstl/Weatherhistory">
+			<form method="post" action="/jstl/Weatherhistory	">
 			<label>날짜</label> <input type="text" class="form-control" name="date">
 			<label>날씨</label> <input type="text" class="form-control" name="weather">
 			<label>미세먼지</label> <input type="text" class="form-control" name="temperatures">
