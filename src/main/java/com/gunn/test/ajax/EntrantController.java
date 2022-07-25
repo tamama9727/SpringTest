@@ -40,14 +40,14 @@ public class EntrantController {
 		
 		int count = entrantBO.addEntrant(name,license);
 		
-		Map<String , String> result = new HashMap<>();
+		Map<String , String> map = new HashMap<>();
 		
 		if(count == 1) {
-			result.put("result", "success");
+			map.put("result", "success");
 		}else {
-			result.put("result", "fail");
+			map.put("result", "fail");
 		}
-		return result;
+		return map;
 		
 	}
 	

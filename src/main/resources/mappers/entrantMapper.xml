@@ -8,8 +8,30 @@
  			`id`
  			,`name`
  			,`license`
+ 			, `createdAt`
+            , `updatedAt`
  		FROM
  			`entrant`
  	</select>
+ 	
+ 	<insert id ="insertEntrant" parameterType = "com.gunn.test.ajax.model.Entrant">
+ 		INSERT INTO
+ 			`entrant`
+ 		(
+ 			
+ 			`name`
+ 			,`license`
+ 			,`createdAt`
+ 			,`updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{name}
+ 			,#{license}
+ 			,now()
+ 			,now()
+ 		)
+ 	
+ 	</insert>
  
  </mapper>
