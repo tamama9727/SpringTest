@@ -44,4 +44,32 @@
 		)
  	
  	</insert>
+ 	
+ 	<delete id="deleteBooking" parameterType = "int">
+ 		DELETE FROM
+ 			`booking`
+ 		WHERE
+ 			`id` = #{id}
+ 	
+ 	</delete>
+ 	
+ 	<select id = "selectBooking" parameterType = "map" resultType = "com.gunn.test.ajax.model.Booking">
+ 		SELECT
+ 			`id`
+ 			,`name`
+ 			,`yyyymmdd`
+ 			,`number`
+ 			,`personnel`
+ 			,`phoneNumber`
+ 			,`situation`
+ 			,`createdAt`
+ 			,`updatedAt`
+ 		FROM
+ 			`booking`
+ 		WHERE
+ 			`name` = #{name}
+ 			AND
+ 			`phoneNumber` = #{phoneNumber}
+ 	</select>
+ 	
  </mapper>

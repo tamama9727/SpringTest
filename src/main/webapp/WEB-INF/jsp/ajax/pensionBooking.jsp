@@ -38,11 +38,20 @@
 					<label>숙박인원</label><input type = "text" class = "form-control" name = "personnel">
 					<label>전화번호</label><input type = "text" class = "form-control" name = "phoneNumber">
 			
-					<input type="submit" value="예약하기" class="btn btn-warning form-control mt-4">
+					<input type="submit" value="예약하기" id = "bookingBtn"class="btn btn-warning form-control mt-4">
 				</form>
                 
                 	
 	</div>
-
+	<script>
+		$(document).ready(function(){
+			
+			$("#bookingBtn").on("click", function(){
+				let name = $("#name").val();
+			});
+			
+			
+		});
+	</script>
 </body>
 </html>

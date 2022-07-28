@@ -14,6 +14,8 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	
 </head>
 <body>
 	<div class = "container" >
@@ -44,7 +46,7 @@
                 	
                 	<tbody>
                 	<c:forEach var = "booking" items = "${bookingList }" varStatus = "status">
-                		<tr>
+                		<tr id = "no${status.count }tr">
                 			<td>${booking.name }</td>
                 			<td>${booking.yyyymmdd }</td>
                 			<td>${booking.number }</td>
@@ -64,7 +66,7 @@
                 					</c:otherwise>
                 				</c:choose>
                 			
-                			<td><button type = "button" class = "btn btn-danger btn-sm">삭제</button></td>
+                			<td><button type = "button" data-booking-id="${booking.id }" class = "delete-btn btn btn-danger btn-sm" >삭제</button></td>
                 		</tr>
                 	</c:forEach>
                 	</tbody>
@@ -72,5 +74,40 @@
                 
             
 	</div>
+	
+	<script>
+		$(document).ready(function(){
+			
+			$(".delete-btn").on("click" , function(){
+				
+				//해당 행을 삭제 한다.
+				//삭제할 대상의 id를 얻어내야한다.
+				let bookingId= $(this).data("booking-id");
+				//삭제 api를 호출한다.
+				$.ajax({
+					type:"get",
+					url:"/ajax/booking/delete",
+					data:{"id":bookingId},
+					success:function(data){
+						if(data.result == "success"){
+							location.reload();
+						}else{
+							alert("삭제 실패");
+						}
+					},
+					error:function(){
+						alert("에러");
+					}
+				});
+				
+				
+			});
+		});
+	
+	
+	</script>
+	
+	
+	
 </body>
 </html>

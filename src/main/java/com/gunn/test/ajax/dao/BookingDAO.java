@@ -19,4 +19,12 @@ public interface BookingDAO {
 			,@Param("personnel") int personnel
 			,@Param("phoneNumber") String phoneNumber
 			);
+	
+	public int deletebooking(@Param("int")int id);
+	
+	public Booking selectBooking(
+			@Param("name") String name,
+			@Param("phoneNumber") String phoneNumber);
 }
+
+	

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,9 +37,9 @@ public class BookingController {
 	
 	//펜션의 예약하기 페이지
 
-	@PostMapping("/insert")
+	@GetMapping("/insert")
 	@ResponseBody
-	public String addBooking(
+	public Map<String, String> addBooking(
 			@RequestParam("name") String name
 			,@RequestParam("yyyymmdd") String yyyymmdd
 			,@RequestParam("number") int number
@@ -49,7 +48,15 @@ public class BookingController {
 			) {
 		int count = bookingBO.addBooking(name, yyyymmdd, number, personnel, phoneNumber);
 		
-		return "redirect:/ajax/pensionList";
+		Map<String , String> map = new HashMap<>();
+		
+		if(count == 1) {
+			map.put("result", "success");
+		}else {
+			map.put("result", "fail");
+		}
+		
+		return map;
 	}
 	
 	@GetMapping("/input")
@@ -57,4 +64,43 @@ public class BookingController {
 		
 		return"ajax/pensionBooking";
 	}
+	//예약 삭제 api
+	@GetMapping("/delete")
+	@ResponseBody
+	public Map<String, String>deleteBooking(@RequestParam("id") int id){
+		
+		int count = bookingBO.deleteBooking(id);
+		
+		Map<String , String> map = new HashMap<>();		
+		if(count == 1) {
+			map.put("result", "success");
+		}else {
+			map.put("result", "fail");
+		}
+		return map;
+	}
+	
+	
+	
+	
+	@GetMapping("/inquire")
+	public String bookingInquire() {
+		
+		return "ajax/pensionInquire";
+	}
+	
+	//이름과 전화번호가 잃치하는 예약 저보 얻어 오기
+	@GetMapping("/get_booking")
+	@ResponseBody
+	public Booking getBooking(
+			@RequestParam("name") String name
+			,@RequestParam("phoneNumber") String phoneNumber
+			) {
+		Booking booking = bookingBO.getBooking(phoneNumber, phoneNumber);
+		
+		return booking;
+	}
+	
+	
+	
 }
